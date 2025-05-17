@@ -1,0 +1,41 @@
+[package]
+name = "esp32s2-wifi-connect"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+esp-hal = { git = "https://github.com/esp-rs/esp-hal.git", branch = "main", features = [
+  "esp32s2",
+  "unstable",
+] }
+
+esp-backtrace = { git = "https://github.com/esp-rs/esp-hal.git", branch = "main", features = [
+  "esp32s2",
+  "panic-handler",
+  "println",
+] }
+esp-println = { git = "https://github.com/esp-rs/esp-hal.git", branch = "main", features = [
+  "esp32s2",
+] }
+esp-wifi = { git = "https://github.com/esp-rs/esp-hal.git", branch = "main", features = [
+  "esp32s2",
+  "wifi",
+] }
+smoltcp = { version = "0.12.0", default-features = false, features = [
+  "proto-ipv4",
+  "socket-tcp",
+  "socket-icmp",
+  "socket-udp",
+  "medium-ethernet",
+] }
+embedded-svc = { version = "0.28.1", default-features = false }
+embedded-io = "0.6.1"
+
+#[patch.crates-io]
+#esp-hal = { path = "../esp-hal/esp-hal" }
+#xtensa-lx = { path = "../esp-hal/xtensa-lx" }
+#xtensa-lx-rt = { path = "../esp-hal/xtensa-lx-rt" }
+#esp-hal-procmacros = { path = "../esp-hal/esp-hal-procmacros" }
+#esp-hal-embassy = { path = "../esp-hal/esp-hal-embassy" }
+#esp-wifi = { path = "../esp-hal/esp-wifi" }
+#esp-alloc = { path = "../esp-hal/esp-alloc" }
