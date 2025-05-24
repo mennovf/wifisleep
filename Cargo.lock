@@ -4,9 +4,9 @@ version = 4
 
 [[package]]
 name = "allocator-api2"
-version = "0.2.21"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "683d7910e743518b0e34f1186f92494becacb047c7b6bf616c96772180fef923"
+checksum = "78200ac3468a57d333cd0ea5dd398e25111194dcacd49208afca95c629a6311d"
 
 [[package]]
 name = "anyhow"
@@ -48,12 +48,6 @@ dependencies = [
  "quote",
  "syn",
 ]
-
-[[package]]
-name = "bitflags"
-version = "1.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
 name = "bitflags"
@@ -309,18 +303,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "embedded-svc"
-version = "0.28.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a7770e30ab55cfbf954c00019522490d6ce26a3334bede05a732ba61010e98e0"
-dependencies = [
- "embedded-io",
- "embedded-io-async",
- "enumset",
- "heapless",
-]
-
-[[package]]
 name = "enum-as-inner"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -362,7 +344,7 @@ checksum = "877a4ace8713b0bcf2a4e7eec82529c029f1d0619886d18145fea96c3ffe5c0f"
 [[package]]
 name = "esp-alloc"
 version = "0.7.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "allocator-api2",
  "cfg-if",
@@ -375,7 +357,7 @@ dependencies = [
 [[package]]
 name = "esp-backtrace"
 version = "0.15.1"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "cfg-if",
  "esp-build",
@@ -389,7 +371,7 @@ dependencies = [
 [[package]]
 name = "esp-build"
 version = "0.2.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "quote",
  "syn",
@@ -399,7 +381,7 @@ dependencies = [
 [[package]]
 name = "esp-config"
 version = "0.3.1"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "document-features",
  "serde",
@@ -409,11 +391,11 @@ dependencies = [
 [[package]]
 name = "esp-hal"
 version = "1.0.0-beta.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "basic-toml",
  "bitfield",
- "bitflags 2.9.1",
+ "bitflags",
  "bytemuck",
  "cfg-if",
  "critical-section",
@@ -456,7 +438,7 @@ dependencies = [
 [[package]]
 name = "esp-hal-procmacros"
 version = "0.17.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "darling",
  "document-features",
@@ -472,7 +454,7 @@ dependencies = [
 [[package]]
 name = "esp-metadata"
 version = "0.6.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "anyhow",
  "basic-toml",
@@ -483,7 +465,7 @@ dependencies = [
 [[package]]
 name = "esp-println"
 version = "0.13.1"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "critical-section",
  "document-features",
@@ -496,7 +478,7 @@ dependencies = [
 [[package]]
 name = "esp-riscv-rt"
 version = "0.10.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "document-features",
  "riscv",
@@ -519,7 +501,7 @@ dependencies = [
 [[package]]
 name = "esp-wifi"
 version = "0.13.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "allocator-api2",
  "cfg-if",
@@ -554,8 +536,9 @@ dependencies = [
 
 [[package]]
 name = "esp32s2"
-version = "0.27.0"
-source = "git+https://github.com/esp-rs/esp-pacs?rev=2964cc4#2964cc46095c7e903fa32a909181d6fb00554ddc"
+version = "0.28.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d4391e38b14eb59a675e816598bde7d9b8c8f43a695a284bd97bcd0cf3092404"
 dependencies = [
  "critical-section",
  "vcell",
@@ -565,13 +548,11 @@ dependencies = [
 name = "esp32s2-wifi-connect"
 version = "0.1.0"
 dependencies = [
- "embedded-io",
- "embedded-svc",
+ "esp-alloc",
  "esp-backtrace",
  "esp-hal",
  "esp-println",
  "esp-wifi",
- "smoltcp",
 ]
 
 [[package]]
@@ -727,12 +708,6 @@ name = "log"
 version = "0.4.27"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "13dc2df351e3202783a1fe0d44375f7295ffb4049267b0f3018346dc122a1d94"
-
-[[package]]
-name = "managed"
-version = "0.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0ca88d725a0a943b096803bd34e73a4437208b6077654cc4ecb2947a5f91618d"
 
 [[package]]
 name = "memchr"
@@ -1012,19 +987,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "smoltcp"
-version = "0.12.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dad095989c1533c1c266d9b1e8d70a1329dd3723c3edac6d03bbd67e7bf6f4bb"
-dependencies = [
- "bitflags 1.3.2",
- "byteorder",
- "cfg-if",
- "heapless",
- "managed",
-]
-
-[[package]]
 name = "stable_deref_trait"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1259,7 +1221,7 @@ dependencies = [
 [[package]]
 name = "xtensa-lx"
 version = "0.10.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "critical-section",
  "document-features",
@@ -1268,7 +1230,7 @@ dependencies = [
 [[package]]
 name = "xtensa-lx-rt"
 version = "0.18.0"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "anyhow",
  "document-features",
@@ -1285,7 +1247,7 @@ dependencies = [
 [[package]]
 name = "xtensa-lx-rt-proc-macros"
 version = "0.2.2"
-source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#7b7844a85516d0a5c00df6b0e5f5a251abf323bb"
+source = "git+https://github.com/esp-rs/esp-hal.git?branch=main#a5d7c11c341bbe0cd66e542bf2dc5e04e1f9687f"
 dependencies = [
  "darling",
  "proc-macro2",

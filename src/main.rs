@@ -10,64 +10,54 @@ use esp_println::println;
 use esp_wifi::{
     wifi::{
         ClientConfiguration, Configuration,
-        WifiState
     },
 };
+    
+use esp_hal::rtc_cntl::sleep::*;
+use esp_hal::rtc_cntl::*;
 const SSID: &str = env!("SSID");
 const PASSWORD: &str = env!("PASSWORD");
 
 #[esp_hal::main]
 fn main() -> ! {
+    esp_alloc::heap_allocator!(size: 72 * 1024);
+    
     let config = esp_hal::Config::default().with_cpu_clock(CpuClock::max());
     let peripherals = esp_hal::init(config);
+
+    let mut rtc = Rtc::new(peripherals.LPWR);
 
     let timer_group0 = TimerGroup::new(peripherals.TIMG0);
 
     let rng = Rng::new(peripherals.RNG);
-    let delay = esp_hal::delay::Delay::new();
 
     let esp_wifi_control = esp_wifi::init(
         timer_group0.timer0,
         rng,
         peripherals.RADIO_CLK,
-    )
-    .unwrap();
+    ).unwrap();
 
     let (mut wifi_controller, _interfaces) = esp_wifi::wifi::new(
         &esp_wifi_control,
         peripherals.WIFI
     ).unwrap();
-    
-    println!("About to initialize WiFi");
+
     let client_config = Configuration::Client(ClientConfiguration {
         ssid: SSID.try_into().unwrap(),
         password: PASSWORD.try_into().unwrap(),
         ..Default::default()
     });
+    
 
     wifi_controller.set_configuration(&client_config).unwrap();
 
-    println!("Starting WiFi");
+    /* Doesn't get stuck here */
+
     wifi_controller.start().unwrap();
-
-    println!("Connecting to WiFi network '{}'...", SSID);
-    wifi_controller.connect().unwrap();
-
-    println!("Waiting for connection...");
-
-    loop {
-        if esp_wifi::wifi::wifi_state() == WifiState::StaConnected {
-            break;
-        }
-        delay.delay_millis(100);
-    }
-
-    println!("WiFi connection established!");
-    loop {
-        println!(
-            "WiFi still connected: {:?}",
-            wifi_controller.is_connected().unwrap()
-        );
-        delay.delay_millis(5000);
-    }
+    
+    /* Get's stuck */
+    
+    println!("Sleep!");
+    let mut wakeup_source = TimerWakeupSource::new(core::time::Duration::from_millis(1000));
+    rtc.sleep_deep(&[&mut wakeup_source]);
 }
