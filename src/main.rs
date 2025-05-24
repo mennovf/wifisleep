@@ -15,8 +15,6 @@ use esp_wifi::{
     
 use esp_hal::rtc_cntl::sleep::*;
 use esp_hal::rtc_cntl::*;
-const SSID: &str = env!("SSID");
-const PASSWORD: &str = env!("PASSWORD");
 
 #[esp_hal::main]
 fn main() -> ! {
@@ -43,19 +41,18 @@ fn main() -> ! {
     ).unwrap();
 
     let client_config = Configuration::Client(ClientConfiguration {
-        ssid: SSID.try_into().unwrap(),
-        password: PASSWORD.try_into().unwrap(),
+        ssid: "SSID".try_into().unwrap(),
+        password: "PASSWORD".try_into().unwrap(),
         ..Default::default()
     });
     
-
     wifi_controller.set_configuration(&client_config).unwrap();
 
     /* Doesn't get stuck here */
 
     wifi_controller.start().unwrap();
     
-    /* Get's stuck */
+    /* Gets stuck */
     
     println!("Sleep!");
     let mut wakeup_source = TimerWakeupSource::new(core::time::Duration::from_millis(1000));
